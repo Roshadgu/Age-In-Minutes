@@ -11,4 +11,8 @@
     <color name="colorPrimaryDark">#FFA938</color>
     <color name="colorPrimary">#FFA938</color>
     <color name="textColor">#844046</color>
+    <color name="backgroundColor">#FEF1E0</color>
+    <color name="ageTextBackgroundColor">#C846DCE0</color>
+    <color name="agetextColor">#FFFFFF</color>
+    <color name="lightGreyTextColor">#B7B7B7</color>
 </resources>
