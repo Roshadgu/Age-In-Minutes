@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity()
@@ -29,8 +32,21 @@ class MainActivity : AppCompatActivity()
     val month = myCalendar.get(Calendar.MONTH)
     val day = myCalendar.get(Calendar.DAY_OF_MONTH)
 
-    DatePickerDialog(this, DatePickerDialog.OnDateSetListener {view, year, month, dayOfMonth ->
-      Toast.makeText(this, "Datepicker works", Toast.LENGTH_LONG).show()
-    }, year, month, day).show()
+    DatePickerDialog(this, DatePickerDialog.OnDateSetListener {view, selectedYear, selectedMonth, selectedDayOfMonth ->
+      Toast.makeText(this, "The chosen year is $selectedYear, the month is ${selectedMonth + 1} and the day is $selectedDayOfMonth"
+              , Toast.LENGTH_LONG).show()
+
+      val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear" //String to hold the date
+      val tvSelectedDate = findViewById<TextView>(R.id.tvSelectedDate) //Connecting the XML id to a variable in the code
+
+      tvSelectedDate.setText(selectedDate)
+
+      val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH) //Formats the date string into a readable day/month/year format
+      val theDate = sdf.parse(selectedDate)
+      val selectedDatInMinutes = theDate.time
+    },
+            year,
+            month,
+            day).show()
   }
 }
