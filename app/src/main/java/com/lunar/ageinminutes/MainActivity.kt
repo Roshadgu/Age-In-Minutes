@@ -43,13 +43,21 @@ class MainActivity : AppCompatActivity()
 
       val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH) //Formats the date string into a readable day/month/year format
       val theDate = sdf.parse(selectedDate)
-      val selectedDatInMinutes = theDate!!.time / 60000
+      val selectedDateInMinutes = theDate!!.time / 60000
+      val selectedDateInDays = theDate!!.time / (60000 * 1440)
+
       val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
-      val currentDateToMinutes = currentDate!!.time / 60000
-      val differenceInMinutes = currentDateToMinutes - selectedDatInMinutes
+      val currentDateToMinutes = currentDate!!.time / 60000 //current date in minutes
+      val currentDateToDays = currentDate!!.time / (60000 * 1440) //current date in days
+
+      val differenceInMinutes = currentDateToMinutes - selectedDateInMinutes
+      val differenceInDays = currentDateToDays - selectedDateInDays
 
       val tvSelectedDateInMinutes = findViewById<TextView>(R.id.tvSelectedDateInMinutes)
       tvSelectedDateInMinutes.setText(differenceInMinutes.toString())
+
+      val tvSelectedDateInDays = findViewById<TextView>(R.id.tvSelectedDateInDays)
+      tvSelectedDateInDays.setText(differenceInDays.toString())
     },
             year,
             month,
